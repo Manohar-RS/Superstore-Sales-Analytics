@@ -1,0 +1,162 @@
+USE superstore;
+
+-- 1. Total Records
+
+SELECT COUNT(*) AS Total_Records
+FROM superstore;
+
+-- ==========================================
+-- 2. Total Sales
+
+SELECT ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore;
+
+-- ==========================================
+-- 3. Total Profit
+
+SELECT ROUND(SUM(profit),2) AS Total_Profit
+FROM superstore;
+
+-- ==========================================
+-- 4. Total Customers
+
+SELECT COUNT(DISTINCT customer_id) AS Total_Customers
+FROM superstore;
+
+-- ==========================================
+-- 5. Total Products
+
+SELECT COUNT(DISTINCT product_id) AS Total_Products
+FROM superstore;
+
+-- ==========================================
+-- 6. Top 10 Customers by Sales
+
+SELECT
+    customer_name,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY customer_name
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- ==========================================
+-- 7. Top 10 Cities by Sales
+
+SELECT
+    city,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY city
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- ==========================================
+-- 8. Top 10 States by Sales
+
+SELECT
+    state,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY state
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- ==========================================
+-- 9. Category Wise Sales
+
+SELECT
+    category,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY category
+ORDER BY Total_Sales DESC;
+
+-- ==========================================
+-- 10. Category Wise Profit
+
+SELECT
+    category,
+    ROUND(SUM(profit),2) AS Total_Profit
+FROM superstore
+GROUP BY category
+ORDER BY Total_Profit DESC;
+
+-- ==========================================
+-- 11. Sub-Category Wise Profit
+
+SELECT
+    sub_category,
+    ROUND(SUM(profit),2) AS Total_Profit
+FROM superstore
+GROUP BY sub_category
+ORDER BY Total_Profit DESC;
+
+-- ==========================================
+-- 12. Region Wise Profit
+
+SELECT
+    region,
+    ROUND(SUM(profit),2) AS Total_Profit
+FROM superstore
+GROUP BY region
+ORDER BY Total_Profit DESC;
+
+-- ==========================================
+-- 13. Most Used Ship Mode
+
+SELECT
+    ship_mode,
+    COUNT(*) AS Total_Orders
+FROM superstore
+GROUP BY ship_mode
+ORDER BY Total_Orders DESC;
+
+-- ==========================================
+-- 14. Average Order Value
+
+SELECT
+ROUND(SUM(sales)/COUNT(DISTINCT order_id),2) AS Average_Order_Value
+FROM superstore;
+
+-- ==========================================
+-- 15. Loss Making States
+
+SELECT
+    state,
+    ROUND(SUM(profit),2) AS Total_Profit
+FROM superstore
+GROUP BY state
+HAVING SUM(profit) < 0
+ORDER BY Total_Profit;
+
+-- ==========================================
+-- 16. Top 10 Products by Sales
+
+SELECT
+    product_name,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY product_name
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- ==========================================
+-- 17. Segment Wise Sales
+
+SELECT
+    segment,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY segment
+ORDER BY Total_Sales DESC;
+
+-- ==========================================
+-- 18. Region Wise Sales
+
+SELECT
+    region,
+    ROUND(SUM(sales),2) AS Total_Sales
+FROM superstore
+GROUP BY region
+ORDER BY Total_Sales DESC;
