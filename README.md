@@ -3,6 +3,7 @@
 A complete **Data Analytics Portfolio Project** built using **MySQL, SQL, and Power BI** to analyze retail sales data and generate business insights through interactive dashboards.
 
 ---
+![Super_Sales_Analysis](Dashboard/Dashboard.png)
 
 
 ## 📌 Project Overview
